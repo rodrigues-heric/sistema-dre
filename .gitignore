@@ -5,6 +5,9 @@ backend/npm-debug.log*
 backend/yarn-debug.log*
 backend/yarn-error.log*
 
+# --- Backend Jest ---
+backend/coverage/
+
 # --- TypeScript ---
 backend/*.tsbuildinfo
 
