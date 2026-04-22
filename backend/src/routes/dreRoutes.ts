@@ -1,11 +1,9 @@
-import { Router, Request, Response } from "express";
+import { Router } from "express";
+
+import * as DREController from "../controllers/dreController";
 
 const routerDRE: Router = Router();
 
-routerDRE.get("/dre-rentabilidade", (request: Request, response: Response) => {
-  response.status(200).json({
-    message: "success",
-  });
-});
+routerDRE.get("/dre-rentabilidade", DREController.getTest);
 
 export default routerDRE;
