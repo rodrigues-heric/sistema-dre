@@ -1,0 +1,22 @@
+# --- Node.js (Express) ---
+backend/node_modules/
+backend/dist/
+backend/npm-debug.log*
+backend/yarn-debug.log*
+backend/yarn-error.log*
+
+# --- TypeScript ---
+backend/*.tsbuildinfo
+
+# --- Environment Variables ---
+backend/.env
+
+# --- IDEs & OS ---
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# --- Logs ---
+logs
+*.log
