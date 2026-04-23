@@ -8,6 +8,7 @@ import { MonthPicker } from "../../ui/monthPicker/MonthPicker";
 import { Header } from "../../ui/header/Header";
 import { Footer } from "../../ui/footer/Footer";
 import { Metric } from "../../ui/metric/Metric";
+import { Skeleton } from "../../ui/skeleton/Skeleton";
 
 export function RentabilidadeCard() {
   const [loading, setLoading] = useState(false);
@@ -60,14 +61,18 @@ export function RentabilidadeCard() {
       </section>
 
       <section className="dre-metrics-grid">
-        {metrics.map((metric, index) => (
-          <Metric
-            key={index}
-            title={metric.label}
-            value={metric.value}
-            type="%"
-          />
-        ))}
+        {metrics.map((metric, index) =>
+          loading ? (
+            <Skeleton key={index} />
+          ) : (
+            <Metric
+              key={index}
+              title={metric.label}
+              value={metric.value}
+              type="%"
+            />
+          ),
+        )}
       </section>
 
       <Footer />
