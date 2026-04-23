@@ -58,19 +58,6 @@
   color: var(--primary);
 }
 
-.dre-footer {
-  margin-top: 2rem;
-  font-size: 0.8rem;
-  text-align: right;
-}
-
-.status-badge {
-  background: #f1f5f9;
-  padding: 0.25rem 0.75rem;
-  border-radius: 999px;
-  color: var(--text-muted);
-}
-
 @media (max-width: 768px) {
   .main-wrapper {
     align-items: flex-start;
@@ -107,9 +94,5 @@
 
   .metric-value {
     font-size: 1.1rem;
-  }
-
-  .dre-footer {
-    text-align: center;
   }
 }

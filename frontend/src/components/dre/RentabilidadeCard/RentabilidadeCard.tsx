@@ -6,6 +6,7 @@ import { Button } from "../../ui/button/Button";
 import { VerticalSelector } from "../../ui/verticalSelector/VerticalSelector";
 import { MonthPicker } from "../../ui/monthPicker/MonthPicker";
 import { Header } from "../../ui/header/Header";
+import { Footer } from "../../ui/footer/Footer";
 
 export function RentabilidadeCard() {
   const [loading, setLoading] = useState(false);
@@ -66,9 +67,7 @@ export function RentabilidadeCard() {
         ))}
       </section>
 
-      <footer className="dre-footer">
-        <span className="status-badge">Aguardando consulta</span>
-      </footer>
+      <Footer />
     </div>
   );
 }
