@@ -1,8 +1,13 @@
-import { useState } from "react";
+import { useState, type SetStateAction } from "react";
+import DatePicker from "react-datepicker";
+import { ptBR } from "date-fns/locale/pt-BR";
+
 import "./RentabilidadeCard.css";
+import "react-datepicker/dist/react-datepicker.css";
 
 export function RentabilidadeCard() {
   const [loading, setLoading] = useState(false);
+  const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
 
   const metrics: any[] = [
     { label: "Receita Líquida", value: "R$ 0,00", type: "currency" },
@@ -11,8 +16,16 @@ export function RentabilidadeCard() {
     { label: "Margem", value: "0.00%", type: "percent" },
   ];
 
+  const formatToBackend = (date: Date | null) => {
+    if (!date) return "";
+    const year = date.getFullYear();
+    const month = (date.getMonth() + 1).toString().padStart(2, "0");
+    return `${year}-${month}`;
+  };
+
   const handleCalculate = () => {
     setLoading(true);
+    const monthForApi = formatToBackend(selectedDate);
     setTimeout(() => setLoading(false), 800);
   };
 
@@ -25,8 +38,18 @@ export function RentabilidadeCard() {
 
       <section className="dre-filters">
         <div className="filter-group">
-          <label>Mês de referência</label>
-          <input type="month" className="dre-input" />
+          <label>Mês de Referência</label>
+          <DatePicker
+            selected={selectedDate}
+            onChange={(date: SetStateAction<Date | null>) =>
+              setSelectedDate(date)
+            }
+            dateFormat="MM/yyyy"
+            showMonthYearPicker
+            locale={ptBR}
+            className="dre-input"
+            placeholderText="Selecione o mês"
+          />
         </div>
 
         <div className="filter-group">
