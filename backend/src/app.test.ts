@@ -4,7 +4,7 @@ import app from "./app";
 const API_PREFIX: string = "/api/v1";
 
 describe("API start", () => {
-  it("Should return 404 for a not exiting route", async () => {
+  it("Should respond with 404 for a non-existent route.", async () => {
     const result = await request(app).get("/random-route");
     expect(result.status).toBe(404);
   });
