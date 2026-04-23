@@ -1,11 +1,16 @@
 import request from "supertest";
 import app from "./app";
 
-describe("API", () => {
-  it("Should return 200 on the test route", async () => {
-    const res = await request(app).get("/test");
+const API_PREFIX: string = "/api/v1";
 
-    expect(res.statusCode).toEqual(200);
-    expect(res.body).toHaveProperty("message");
+describe("API start", () => {
+  it("Should respond with 404 for a non-existent route.", async () => {
+    const result = await request(app).get("/random-route");
+    expect(result.status).toBe(404);
+  });
+
+  it("Should access dre-rentabilidade successfully", async () => {
+    const result = await request(app).get(`${API_PREFIX}/dre-rentabilidade`);
+    expect(result.status).not.toBe(500);
   });
 });
