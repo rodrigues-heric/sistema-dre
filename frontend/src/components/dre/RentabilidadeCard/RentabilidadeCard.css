@@ -43,19 +43,6 @@
   border-bottom: 1px solid var(--border-color);
 }
 
-.dre-input {
-  padding: 0.6rem;
-  border: 1px solid var(--border-color);
-  border-radius: 6px;
-  font-size: 0.95rem;
-  outline: none;
-  transition: border-color 0.2s;
-}
-
-.dre-input:focus {
-  border-color: var(--accent);
-}
-
 .dre-metrics-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -118,13 +105,6 @@
     margin: 1.5rem 0;
   }
 
-  .dre-input {
-    width: 100%;
-    box-sizing: border-box;
-    font-size: 16px;
-    padding: 0.8rem;
-  }
-
   .dre-metrics-grid {
     grid-template-columns: 1fr;
     gap: 0.75rem;
@@ -144,8 +124,4 @@
   .dre-footer {
     text-align: center;
   }
-}
-
-.react-datepicker-wrapper {
-  width: 100%;
 }

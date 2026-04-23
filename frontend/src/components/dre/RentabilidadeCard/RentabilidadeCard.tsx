@@ -1,11 +1,10 @@
-import { useState, type SetStateAction } from "react";
-import DatePicker from "react-datepicker";
-import { ptBR } from "date-fns/locale/pt-BR";
+import { useState } from "react";
 
 import "./RentabilidadeCard.css";
-import "react-datepicker/dist/react-datepicker.css";
+
 import { Button } from "../../ui/button/Button";
 import { VerticalSelector } from "../../ui/verticalSelector/VerticalSelector";
+import { MonthPicker } from "../../ui/monthPicker/MonthPicker";
 
 export function RentabilidadeCard() {
   const [loading, setLoading] = useState(false);
@@ -46,19 +45,10 @@ export function RentabilidadeCard() {
       </header>
 
       <section className="dre-filters">
-        <div className="filter-group">
-          <label>Mês de Referência</label>
-          <DatePicker
-            selected={selectedDate}
-            onChange={(date: Date | null) => setSelectedDate(date)}
-            dateFormat="MM/yyyy"
-            showMonthYearPicker
-            locale={ptBR}
-            className="dre-input"
-            wrapperClassName="datepicker-full-width"
-            placeholderText="Selecione o mês"
-          />
-        </div>
+        <MonthPicker
+          selectedDate={selectedDate}
+          onChange={(date) => setSelectedDate(date)}
+        />
 
         <VerticalSelector options={verticals} />
 
