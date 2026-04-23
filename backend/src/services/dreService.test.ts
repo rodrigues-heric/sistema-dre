@@ -36,4 +36,27 @@ describe("DREService", () => {
 
     expect(firstCall).toBe(secondCall);
   });
+
+  it("Should set margin percent as 0 when there is no gross profit", () => {
+    const mockZeroProfit = [
+      {
+        mes: "2099-01",
+        vertical: "E-commerce" as any,
+        valor_bruto: 100,
+        devolucao: 0,
+        impostos_totais: 0,
+        cmv: 100,
+        vpc: 0,
+        frete: 0,
+        comissao: 0,
+      },
+    ];
+
+    (mockDatabase as any).splice(0, mockDatabase.length, ...mockZeroProfit);
+
+    const result = DREService.getData("2099-01", "E-commerce");
+
+    expect(result?.data.metricas.lucro_bruto).toBe(0);
+    expect(result?.data.metricas.margem_percentual).toBe(0);
+  });
 });
