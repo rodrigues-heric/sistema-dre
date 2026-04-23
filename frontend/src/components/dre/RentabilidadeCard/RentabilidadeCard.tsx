@@ -5,10 +5,18 @@ import { ptBR } from "date-fns/locale/pt-BR";
 import "./RentabilidadeCard.css";
 import "react-datepicker/dist/react-datepicker.css";
 import { Button } from "../../ui/button/Button";
+import { VerticalSelector } from "../../ui/verticalSelector/VerticalSelector";
 
 export function RentabilidadeCard() {
   const [loading, setLoading] = useState(false);
   const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
+
+  const verticals = [
+    { key: "E-commerce", value: "E-commerce" },
+    { key: "Atacado", value: "Atacado" },
+    { key: "Varejo", value: "Varejo" },
+    { key: "Marketplace", value: "Marketplace" },
+  ];
 
   const metrics: any[] = [
     { label: "Receita Líquida", value: "R$ 0,00", type: "currency" },
@@ -52,12 +60,7 @@ export function RentabilidadeCard() {
           />
         </div>
 
-        <div className="filter-group">
-          <label>Vertical</label>
-          <select className="dre-input">
-            <option value="">- Selecione -</option>
-          </select>
-        </div>
+        <VerticalSelector options={verticals} />
 
         <Button
           text={loading ? "Calculando..." : "CALCULAR"}
