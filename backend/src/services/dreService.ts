@@ -3,7 +3,7 @@ import { mockDatabase, DRERecord } from "../mocks/database";
 
 const dreCache: Record<string, DreData> = {};
 
-export const getData = (month: string, vertical: string): DreData | null => {
+export const getData = (month: string, vertical: string): DreData => {
   const cacheKey: string = `${month}:${vertical}`;
 
   if (dreCache[cacheKey]) {
@@ -12,12 +12,26 @@ export const getData = (month: string, vertical: string): DreData | null => {
 
   const records: DRERecord[] = _filterRecords(month, vertical);
 
-  if (records) {
+  if (records.length > 0) {
     const updatedEntry = _updateCache(records, month, vertical, cacheKey);
     return updatedEntry;
   }
 
-  return null;
+  return {
+    success: true,
+    data: {
+      mes: month,
+      vertical: vertical,
+      metricas: {
+        receita_liquida: 0,
+        custos_totais: 0,
+        lucro_bruto: 0,
+        margem_percentual: 0,
+      },
+      quantidade_registros: 0,
+    },
+    message: "Sem dados para a combinação mês e vertical",
+  };
 };
 
 const _filterRecords = (month: string, vertical: string): DRERecord[] => {
