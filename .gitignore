@@ -1,25 +1,48 @@
-# --- Node.js (Express) ---
-backend/node_modules/
-backend/dist/
-backend/npm-debug.log*
-backend/yarn-debug.log*
-backend/yarn-error.log*
+# --- Workspaces & Dependencies ---
+node_modules/
+**/node_modules/
 
-# --- Backend Jest ---
-backend/coverage/
-
-# --- TypeScript ---
-backend/*.tsbuildinfo
+# --- Build Outputs ---
+dist/
+**/dist/
+build/
+**/build/
 
 # --- Environment Variables ---
-backend/.env
+.env
+.env.*
+!.env.example
+**/ .env
+**/ .env.*
+
+# --- Logs ---
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+*.log
+logs/
+
+# --- Testing ---
+coverage/
+**/coverage/
+.nyc_output/
+
+# --- TypeScript ---
+*.tsbuildinfo
+next-env.d.ts
 
 # --- IDEs & OS ---
 .vscode/
 .idea/
 .DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
 Thumbs.db
 
-# --- Logs ---
-logs
-*.log
+# --- Frontend Specific (Vite/React) ---
+frontend/stats.html
+.eslintcache
