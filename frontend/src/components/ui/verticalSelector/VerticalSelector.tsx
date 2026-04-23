@@ -21,7 +21,9 @@ export function VerticalSelector({ options }: VerticalOptionsArray) {
         <option value="">- Selecione -</option>
 
         {optionsSorted.map((opt: VerticalOption) => (
-          <option value={opt.key}>{opt.value}</option>
+          <option key={opt.key} value={opt.key}>
+            {opt.value}
+          </option>
         ))}
       </select>
     </div>
