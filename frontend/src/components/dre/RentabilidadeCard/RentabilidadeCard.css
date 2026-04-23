@@ -70,27 +70,6 @@
   border-color: var(--accent);
 }
 
-.dre-button {
-  padding: 0.6rem 1.5rem;
-  background-color: var(--primary);
-  color: white;
-  border: none;
-  border-radius: 6px;
-  font-weight: 600;
-  cursor: pointer;
-  height: 40px;
-  transition: opacity 0.2s;
-}
-
-.dre-button:hover {
-  opacity: 0.9;
-}
-
-.dre-button.is-loading {
-  background-color: var(--text-muted);
-  cursor: not-allowed;
-}
-
 .dre-metrics-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -162,11 +141,6 @@
     box-sizing: border-box;
     font-size: 16px;
     padding: 0.8rem;
-  }
-
-  .dre-button {
-    height: 48px;
-    margin-top: 0.5rem;
   }
 
   .dre-metrics-grid {

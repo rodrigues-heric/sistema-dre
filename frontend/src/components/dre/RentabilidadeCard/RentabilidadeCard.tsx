@@ -4,6 +4,7 @@ import { ptBR } from "date-fns/locale/pt-BR";
 
 import "./RentabilidadeCard.css";
 import "react-datepicker/dist/react-datepicker.css";
+import { Button } from "../../ui/button/Button";
 
 export function RentabilidadeCard() {
   const [loading, setLoading] = useState(false);
@@ -58,12 +59,11 @@ export function RentabilidadeCard() {
           </select>
         </div>
 
-        <button
-          className={`dre-button ${loading ? "is-loading" : ""}`}
+        <Button
+          text={loading ? "Calculando..." : "CALCULAR"}
+          disabled={loading}
           onClick={handleCalculate}
-        >
-          {loading ? "Calculando..." : "CALCULAR"}
-        </button>
+        />
       </section>
 
       <section className="dre-metrics-grid">
