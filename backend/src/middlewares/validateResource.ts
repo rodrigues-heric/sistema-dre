@@ -1,4 +1,5 @@
 import { Request, Response, NextFunction } from "express";
+import { StatusCodes } from "http-status-codes";
 import { ZodObject, ZodError } from "zod";
 
 export const validate =
@@ -13,7 +14,7 @@ export const validate =
       next();
     } catch (error) {
       if (error instanceof ZodError) {
-        return response.status(400).json({
+        return response.status(StatusCodes.BAD_REQUEST).json({
           status: "error",
           message: "Failed to validate data",
           errors: error.issues.map((err) => {

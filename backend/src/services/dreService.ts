@@ -3,7 +3,7 @@ interface GetTest {
   time: Date;
 }
 
-export const getData = (): GetTest => {
+export const getData = (month: string, vertical: string): GetTest => {
   return {
     message: "success",
     time: new Date(),
