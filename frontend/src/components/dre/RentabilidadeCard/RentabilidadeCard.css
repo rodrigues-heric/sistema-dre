@@ -10,8 +10,8 @@
 
 .dre-container {
   max-width: 900px;
-  margin: 2rem auto;
-  padding: 2rem;
+  margin: 1rem auto;
+  padding: 1.5rem;
   background: var(--bg-card);
   border-radius: 12px;
   box-shadow:
@@ -128,4 +128,63 @@
   padding: 0.25rem 0.75rem;
   border-radius: 999px;
   color: var(--text-muted);
+}
+
+@media (max-width: 768px) {
+  .dre-container {
+    margin: 0;
+    border-radius: 0;
+    min-height: 100vh;
+  }
+
+  .dre-header h2 {
+    font-size: 1.25rem;
+  }
+
+  .dre-filters {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
+    margin: 1.5rem 0;
+  }
+
+  .filter-group {
+    flex: none;
+  }
+
+  .dre-input {
+    width: 100%;
+    box-sizing: border-box;
+    font-size: 16px;
+    padding: 0.8rem;
+  }
+
+  .dre-button {
+    height: 48px;
+    margin-top: 0.5rem;
+  }
+
+  .dre-metrics-grid {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+
+  .metric-card {
+    padding: 1rem;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .metric-value {
+    font-size: 1.1rem;
+  }
+
+  .dre-footer {
+    text-align: center;
+  }
+}
+
+.react-datepicker-wrapper {
+  width: 100%;
 }

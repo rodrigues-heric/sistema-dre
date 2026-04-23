@@ -41,13 +41,12 @@ export function RentabilidadeCard() {
           <label>Mês de Referência</label>
           <DatePicker
             selected={selectedDate}
-            onChange={(date: SetStateAction<Date | null>) =>
-              setSelectedDate(date)
-            }
+            onChange={(date: Date | null) => setSelectedDate(date)}
             dateFormat="MM/yyyy"
             showMonthYearPicker
             locale={ptBR}
             className="dre-input"
+            wrapperClassName="datepicker-full-width"
             placeholderText="Selecione o mês"
           />
         </div>
