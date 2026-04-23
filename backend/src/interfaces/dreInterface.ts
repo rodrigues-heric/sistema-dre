@@ -3,13 +3,15 @@ export interface DreData {
   data: {
     mes: string;
     vertical: string;
-    metricas: {
-      receita_liquida: number;
-      custos_totais: number;
-      lucro_bruto: number;
-      margem_percentual: number;
-    };
+    metricas: DreMetrics;
     quantidade_registros: number;
   };
   message: string;
+}
+
+export interface DreMetrics {
+  receita_liquida: number;
+  custos_totais: number;
+  lucro_bruto: number;
+  margem_percentual: number;
 }

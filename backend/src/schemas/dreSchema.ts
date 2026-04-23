@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-const REGEX_MONTH: RegExp = /^\d{4}-(0[1-2]|1[0-2])$/;
+const REGEX_MONTH: RegExp = /^\d{4}-(0[1-9]|1[0-2])$/;
 
 export const getDRESchema = z.object({
   query: z.object({

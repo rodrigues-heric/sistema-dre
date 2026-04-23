@@ -8,7 +8,7 @@ import { DreData } from "../interfaces/dreInterface";
 type GetDreRequest = Request<Record<string, string>, any, any, GetDreDTO>;
 
 export const getTest = (request: GetDreRequest, response: Response) => {
-  const result: DreData = DREService.getData(
+  const result: DreData | null = DREService.getData(
     request.query.month,
     request.query.vertical,
   );

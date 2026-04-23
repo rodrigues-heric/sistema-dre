@@ -1,19 +1,91 @@
-import type { DreData } from "../interfaces/dreInterface";
+import type { DreData, DreMetrics } from "../interfaces/dreInterface";
+import { mockDatabase, DRERecord } from "../mocks/database";
 
-export const getData = (month: string, vertical: string): DreData => {
-  return {
+const dreCache: Record<string, DreData> = {};
+
+export const getData = (month: string, vertical: string): DreData | null => {
+  const cacheKey: string = `${month}:${vertical}`;
+
+  if (dreCache[cacheKey]) {
+    return dreCache[cacheKey];
+  }
+
+  const records: DRERecord[] = _filterRecords(month, vertical);
+
+  if (records) {
+    const updatedEntry = _updateCache(records, month, vertical, cacheKey);
+    return updatedEntry;
+  }
+
+  return null;
+};
+
+const _filterRecords = (month: string, vertical: string): DRERecord[] => {
+  return mockDatabase.filter(
+    (item) => item.mes === month && item.vertical === vertical,
+  );
+};
+
+const _updateCache = (
+  records: DRERecord[],
+  month: string,
+  vertical: string,
+  cacheKey: string,
+): DreData => {
+  const metrics: DreMetrics = _calculateMetrics(records);
+  const numberOfRecords: number = records.length;
+
+  const dreData: DreData = {
     success: true,
     data: {
       mes: month,
       vertical: vertical,
-      metricas: {
-        receita_liquida: 1,
-        custos_totais: 2,
-        lucro_bruto: 3,
-        margem_percentual: 4,
-      },
-      quantidade_registros: 5,
+      metricas: metrics,
+      quantidade_registros: numberOfRecords,
     },
-    message: "Foi",
+    message: "Rentabilidade calculada com sucesso",
   };
+
+  dreCache[cacheKey] = dreData;
+  return dreData;
+};
+
+const _calculateMetrics = (records: DRERecord[]): DreMetrics => {
+  let netIncome: number = 0;
+  let totalCosts: number = 0;
+
+  records.forEach((record) => {
+    netIncome += _calculateNetIncome(record);
+    totalCosts += _calculateTotalCosts(record);
+  });
+
+  const grossProfit: number = _calculateGrossProfit(netIncome, totalCosts);
+  const marginPercent: number =
+    grossProfit != 0 ? _calculateMarginPercent(netIncome, grossProfit) : 0;
+
+  return {
+    receita_liquida: netIncome,
+    custos_totais: totalCosts,
+    lucro_bruto: grossProfit,
+    margem_percentual: marginPercent,
+  };
+};
+
+const _calculateNetIncome = (record: DRERecord): number => {
+  return record.valor_bruto - record.devolucao - record.impostos_totais;
+};
+
+const _calculateTotalCosts = (record: DRERecord): number => {
+  return record.cmv + record.vpc + record.comissao;
+};
+
+const _calculateGrossProfit = (netIncome: number, costs: number): number => {
+  return netIncome - costs;
+};
+
+const _calculateMarginPercent = (
+  netIncome: number,
+  grossProfit: number,
+): number => {
+  return (netIncome / grossProfit) * 100;
 };
