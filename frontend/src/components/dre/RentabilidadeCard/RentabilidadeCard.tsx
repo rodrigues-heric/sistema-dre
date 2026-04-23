@@ -5,6 +5,7 @@ import "./RentabilidadeCard.css";
 import { Button } from "../../ui/button/Button";
 import { VerticalSelector } from "../../ui/verticalSelector/VerticalSelector";
 import { MonthPicker } from "../../ui/monthPicker/MonthPicker";
+import { Header } from "../../ui/header/Header";
 
 export function RentabilidadeCard() {
   const [loading, setLoading] = useState(false);
@@ -39,10 +40,7 @@ export function RentabilidadeCard() {
 
   return (
     <div className="dre-container">
-      <header className="dre-header">
-        <h2>Demonstrativo de Resultados</h2>
-        <p>Analise a rentabilidade por período e vertical</p>
-      </header>
+      <Header />
 
       <section className="dre-filters">
         <MonthPicker

@@ -22,18 +22,6 @@
   color: var(--text-main);
 }
 
-.dre-header h2 {
-  margin: 0;
-  font-size: 1.5rem;
-  color: var(--primary);
-}
-
-.dre-header p {
-  color: var(--text-muted);
-  font-size: 0.9rem;
-  margin-top: 0.5rem;
-}
-
 .dre-filters {
   display: flex;
   gap: 1.5rem;
