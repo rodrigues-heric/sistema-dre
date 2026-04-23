@@ -7,6 +7,7 @@ import { VerticalSelector } from "../../ui/verticalSelector/VerticalSelector";
 import { MonthPicker } from "../../ui/monthPicker/MonthPicker";
 import { Header } from "../../ui/header/Header";
 import { Footer } from "../../ui/footer/Footer";
+import { Metric } from "../../ui/metric/Metric";
 
 export function RentabilidadeCard() {
   const [loading, setLoading] = useState(false);
@@ -20,10 +21,10 @@ export function RentabilidadeCard() {
   ];
 
   const metrics: any[] = [
-    { label: "Receita Líquida", value: "R$ 0,00", type: "currency" },
-    { label: "Custos Totais", value: "R$ 0,00", type: "currency" },
-    { label: "Lucro Bruto", value: "R$ 0,00", type: "currency" },
-    { label: "Margem", value: "0.00%", type: "percent" },
+    { label: "Receita Líquida", value: 0, type: "currency" },
+    { label: "Custos Totais", value: 0, type: "currency" },
+    { label: "Lucro Bruto", value: 0, type: "currency" },
+    { label: "Margem", value: 0, type: "percent" },
   ];
 
   const formatToBackend = (date: Date | null) => {
@@ -60,10 +61,12 @@ export function RentabilidadeCard() {
 
       <section className="dre-metrics-grid">
         {metrics.map((metric, index) => (
-          <div key={index} className="metric-card">
-            <span className="metric-label">{metric.label}</span>
-            <span className="metric-value">{metric.value}</span>
-          </div>
+          <Metric
+            key={index}
+            title={metric.label}
+            value={metric.value}
+            type="%"
+          />
         ))}
       </section>
 
