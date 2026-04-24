@@ -2,7 +2,7 @@ import { useState } from "react";
 
 import "./RentabilidadeCard.css";
 
-import { dreService, type DreMetrics } from "../../../services/dreService";
+import { useDreRentabilidade } from "../../../hooks/useDreCalculate";
 
 import { Button } from "../../ui/button/Button";
 import { VerticalSelector } from "../../ui/verticalSelector/VerticalSelector";
@@ -12,50 +12,10 @@ import { Footer } from "../../ui/footer/Footer";
 import { Metric } from "../../ui/metric/Metric";
 import { Skeleton } from "../../ui/skeleton/Skeleton";
 
-interface DisplayMetric {
-  receita_liquida: MetricData;
-  custos_totais: MetricData;
-  lucro_bruto: MetricData;
-  margem_percentual: MetricData;
-}
-
-interface MetricData {
-  title: string;
-  value: number;
-  type: "R$" | "%";
-  color: "RED" | "YELLOW" | "GREEN";
-}
-
 export function RentabilidadeCard() {
-  const [loading, setLoading] = useState(false);
   const [selectedVertical, setSelectedVertical] = useState("");
   const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
-  const [metrics, setMetrics] = useState<DisplayMetric>({
-    receita_liquida: {
-      title: "Receita líquida",
-      value: 0,
-      type: "R$",
-      color: "GREEN",
-    },
-    custos_totais: {
-      title: "Custos totais",
-      value: 0,
-      type: "R$",
-      color: "GREEN",
-    },
-    lucro_bruto: {
-      title: "Lucro bruto",
-      value: 0,
-      type: "R$",
-      color: "GREEN",
-    },
-    margem_percentual: {
-      title: "Margem",
-      value: 0,
-      type: "%",
-      color: "GREEN",
-    },
-  });
+  const { metrics, loading, error, calculate } = useDreRentabilidade();
 
   const verticals = [
     { key: "E-commerce", value: "E-commerce" },
@@ -64,34 +24,8 @@ export function RentabilidadeCard() {
     { key: "Marketplace", value: "Marketplace" },
   ];
 
-  const handleCalculate = async () => {
-    if (!selectedDate || !selectedVertical) {
-      alert("Por favor, selecione o mês de referência e uma vertical");
-      return;
-    }
-
-    setLoading(true);
-
-    try {
-      const month = formatDateToBackend(selectedDate);
-      const response = await dreService.getRentabilidade(
-        month,
-        selectedVertical,
-      );
-
-      const color = getColor(response.data.metricas.margem_percentual);
-      const metricsToDisplay: DisplayMetric = getDisplayMetrics(
-        response.data.metricas,
-        color,
-      );
-
-      setMetrics(metricsToDisplay);
-    } catch (error: any) {
-      console.error("Error while fetching data:", error);
-      alert(error.response?.data?.message || "Erro ao conectar com o servidor");
-    } finally {
-      setLoading(false);
-    }
+  const handleFetchData = () => {
+    calculate(selectedDate, selectedVertical);
   };
 
   return (
@@ -99,86 +33,36 @@ export function RentabilidadeCard() {
       <Header />
 
       <section className="dre-filters">
-        <MonthPicker
-          selectedDate={selectedDate}
-          onChange={(date) => setSelectedDate(date)}
-        />
-
+        <MonthPicker selectedDate={selectedDate} onChange={setSelectedDate} />
         <VerticalSelector
           options={verticals}
           value={selectedVertical}
-          onChange={(val: string) => setSelectedVertical(val)}
+          onChange={setSelectedVertical}
         />
-
         <Button
           text={loading ? "Calculando..." : "CALCULAR"}
           disabled={loading}
-          onClick={handleCalculate}
+          onClick={handleFetchData}
         />
       </section>
 
+      {error && <p className="error-message">{error}</p>}
+
       <section className="dre-metrics-grid">
-        {Object.values(metrics).map((metric, index) =>
-          loading ? (
-            <Skeleton key={index} />
-          ) : (
-            <Metric
-              key={index}
-              title={metric.title}
-              value={metric.value}
-              type={metric.type}
-              color={metric.color}
-            />
-          ),
-        )}
+        {loading
+          ? Array.from({ length: 4 }).map((_, i) => <Skeleton key={i} />)
+          : metrics?.map((metric) => (
+              <Metric
+                key={metric.title}
+                title={metric.title}
+                value={metric.value}
+                type={metric.type}
+                color={metric.color}
+              />
+            ))}
       </section>
 
       <Footer />
     </div>
   );
-}
-
-function formatDateToBackend(date: Date | null) {
-  if (!date) return "";
-  const year = date.getFullYear();
-  const month = (date.getMonth() + 1).toString().padStart(2, "0");
-  return `${year}-${month}`;
-}
-
-function getColor(value: number): "RED" | "YELLOW" | "GREEN" {
-  if (value >= 20) return "GREEN";
-  if (value >= 10) return "YELLOW";
-  return "RED";
-}
-
-function getDisplayMetrics(
-  metrics: DreMetrics,
-  color: "RED" | "YELLOW" | "GREEN",
-): DisplayMetric {
-  return {
-    receita_liquida: {
-      title: "Receita líquida",
-      value: metrics.receita_liquida,
-      type: "R$",
-      color: color,
-    },
-    custos_totais: {
-      title: "Custos totais",
-      value: metrics.custos_totais,
-      type: "R$",
-      color: color,
-    },
-    lucro_bruto: {
-      title: "Lucro bruto",
-      value: metrics.lucro_bruto,
-      type: "R$",
-      color: color,
-    },
-    margem_percentual: {
-      title: "Margem",
-      value: metrics.margem_percentual,
-      type: "%",
-      color: color,
-    },
-  };
 }
