@@ -191,3 +191,11 @@ Por fim eu adicionaria um botão simples de export para excel para que os dados 
 Em ambas as pontas eu adicionaria um sistema de login/segurança. O login seria pelo menos um JWT HttpOnly para evitar leitura via Javascript ou um SSO caso a ferramenta estivesse integrada em um sistema mais robusto
 
 ## Screenshots
+
+<img width="1918" height="1002" alt="Captura de tela de 2026-04-24 08-49-09" src="https://github.com/user-attachments/assets/04904dc8-f05f-4766-8eb8-1655f39eeb4d" />
+
+<img width="1918" height="1002" alt="Captura de tela de 2026-04-24 08-49-28" src="https://github.com/user-attachments/assets/973bd11f-2827-46c1-8aaa-e8d8b349100e" />
+
+<img width="398" height="839" alt="Captura de tela de 2026-04-24 08-49-52" src="https://github.com/user-attachments/assets/65012f7e-4a81-42ad-9da8-ff232dc0df1c" />
+
+<img width="398" height="839" alt="Captura de tela de 2026-04-24 08-50-11" src="https://github.com/user-attachments/assets/f5856082-5132-4832-8023-c3c603118bc0" />
