@@ -12,7 +12,7 @@ export interface DRERecord {
 
 export const mockDatabase: DRERecord[] = [
   {
-    mes: "2024-01",
+    mes: "2026-01",
     vertical: "E-commerce",
     valor_bruto: 150000.0,
     devolucao: 4500.0,
@@ -23,7 +23,7 @@ export const mockDatabase: DRERecord[] = [
     comissao: 7500.0,
   },
   {
-    mes: "2024-01",
+    mes: "2026-01",
     vertical: "E-commerce",
     valor_bruto: 120000.0,
     devolucao: 1500.0,
@@ -34,7 +34,7 @@ export const mockDatabase: DRERecord[] = [
     comissao: 7000.0,
   },
   {
-    mes: "2024-01",
+    mes: "2026-01",
     vertical: "Varejo",
     valor_bruto: 280000.0,
     devolucao: 2000.0,
@@ -45,7 +45,7 @@ export const mockDatabase: DRERecord[] = [
     comissao: 0.0,
   },
   {
-    mes: "2024-01",
+    mes: "2026-01",
     vertical: "Atacado",
     valor_bruto: 450000.0,
     devolucao: 0.0,
@@ -56,7 +56,7 @@ export const mockDatabase: DRERecord[] = [
     comissao: 13500.0,
   },
   {
-    mes: "2024-01",
+    mes: "2026-01",
     vertical: "Marketplace",
     valor_bruto: 95000.0,
     devolucao: 1200.0,
@@ -68,7 +68,7 @@ export const mockDatabase: DRERecord[] = [
   },
 
   {
-    mes: "2024-02",
+    mes: "2026-02",
     vertical: "E-commerce",
     valor_bruto: 142000.0,
     devolucao: 3100.0,
@@ -79,7 +79,7 @@ export const mockDatabase: DRERecord[] = [
     comissao: 7100.0,
   },
   {
-    mes: "2024-02",
+    mes: "2026-02",
     vertical: "Varejo",
     valor_bruto: 265000.0,
     devolucao: 1800.0,
@@ -90,7 +90,7 @@ export const mockDatabase: DRERecord[] = [
     comissao: 0.0,
   },
   {
-    mes: "2024-02",
+    mes: "2026-02",
     vertical: "Atacado",
     valor_bruto: 410000.0,
     devolucao: 5000.0,
@@ -101,7 +101,7 @@ export const mockDatabase: DRERecord[] = [
     comissao: 12300.0,
   },
   {
-    mes: "2024-02",
+    mes: "2026-02",
     vertical: "Marketplace",
     valor_bruto: 110000.0,
     devolucao: 2500.0,
@@ -113,7 +113,7 @@ export const mockDatabase: DRERecord[] = [
   },
 
   {
-    mes: "2024-03",
+    mes: "2026-03",
     vertical: "E-commerce",
     valor_bruto: 165000.0,
     devolucao: 4000.0,
@@ -124,7 +124,7 @@ export const mockDatabase: DRERecord[] = [
     comissao: 8250.0,
   },
   {
-    mes: "2024-03",
+    mes: "2026-03",
     vertical: "Varejo",
     valor_bruto: 310000.0,
     devolucao: 2500.0,
@@ -135,7 +135,7 @@ export const mockDatabase: DRERecord[] = [
     comissao: 0.0,
   },
   {
-    mes: "2024-03",
+    mes: "2026-03",
     vertical: "Atacado",
     valor_bruto: 480000.0,
     devolucao: 1500.0,
@@ -146,7 +146,7 @@ export const mockDatabase: DRERecord[] = [
     comissao: 14400.0,
   },
   {
-    mes: "2024-03",
+    mes: "2026-03",
     vertical: "Marketplace",
     valor_bruto: 125000.0,
     devolucao: 3000.0,
@@ -158,7 +158,7 @@ export const mockDatabase: DRERecord[] = [
   },
 
   {
-    mes: "2024-04",
+    mes: "2026-04",
     vertical: "E-commerce",
     valor_bruto: 158000.0,
     devolucao: 3800.0,
@@ -169,7 +169,7 @@ export const mockDatabase: DRERecord[] = [
     comissao: 7900.0,
   },
   {
-    mes: "2024-04",
+    mes: "2026-04",
     vertical: "Varejo",
     valor_bruto: 295000.0,
     devolucao: 2100.0,
@@ -180,7 +180,7 @@ export const mockDatabase: DRERecord[] = [
     comissao: 0.0,
   },
   {
-    mes: "2024-04",
+    mes: "2026-04",
     vertical: "Atacado",
     valor_bruto: 430000.0,
     devolucao: 0.0,
@@ -191,7 +191,7 @@ export const mockDatabase: DRERecord[] = [
     comissao: 12900.0,
   },
   {
-    mes: "2024-04",
+    mes: "2026-04",
     vertical: "Marketplace",
     valor_bruto: 118000.0,
     devolucao: 2800.0,
@@ -203,7 +203,7 @@ export const mockDatabase: DRERecord[] = [
   },
 
   {
-    mes: "2024-05",
+    mes: "2026-05",
     vertical: "E-commerce",
     valor_bruto: 170000.0,
     devolucao: 5200.0,
@@ -214,7 +214,7 @@ export const mockDatabase: DRERecord[] = [
     comissao: 8500.0,
   },
   {
-    mes: "2024-05",
+    mes: "2026-05",
     vertical: "Varejo",
     valor_bruto: 320000.0,
     devolucao: 3000.0,
@@ -225,7 +225,7 @@ export const mockDatabase: DRERecord[] = [
     comissao: 0.0,
   },
   {
-    mes: "2024-05",
+    mes: "2026-05",
     vertical: "Atacado",
     valor_bruto: 510000.0,
     devolucao: 1000.0,
@@ -236,7 +236,7 @@ export const mockDatabase: DRERecord[] = [
     comissao: 15300.0,
   },
   {
-    mes: "2024-05",
+    mes: "2026-05",
     vertical: "Marketplace",
     valor_bruto: 140000.0,
     devolucao: 3500.0,
@@ -247,7 +247,7 @@ export const mockDatabase: DRERecord[] = [
     comissao: 28000.0,
   },
   {
-    mes: "2024-01",
+    mes: "2026-01",
     vertical: "E-commerce",
     valor_bruto: 135000.0,
     devolucao: 4000.0,
@@ -258,7 +258,7 @@ export const mockDatabase: DRERecord[] = [
     comissao: 6750.0,
   },
   {
-    mes: "2024-01",
+    mes: "2026-01",
     vertical: "Varejo",
     valor_bruto: 285000.0,
     devolucao: 2100.0,
@@ -269,7 +269,7 @@ export const mockDatabase: DRERecord[] = [
     comissao: 0.0,
   },
   {
-    mes: "2024-01",
+    mes: "2026-01",
     vertical: "Atacado",
     valor_bruto: 455000.0,
     devolucao: 500.0,
@@ -280,7 +280,7 @@ export const mockDatabase: DRERecord[] = [
     comissao: 13650.0,
   },
   {
-    mes: "2024-01",
+    mes: "2026-01",
     vertical: "Marketplace",
     valor_bruto: 98000.0,
     devolucao: 1250.0,
@@ -291,7 +291,7 @@ export const mockDatabase: DRERecord[] = [
     comissao: 19600.0,
   },
   {
-    mes: "2024-02",
+    mes: "2026-02",
     vertical: "E-commerce",
     valor_bruto: 144000.0,
     devolucao: 3150.0,
@@ -302,7 +302,7 @@ export const mockDatabase: DRERecord[] = [
     comissao: 7200.0,
   },
   {
-    mes: "2024-02",
+    mes: "2026-02",
     vertical: "Varejo",
     valor_bruto: 268000.0,
     devolucao: 1850.0,
@@ -313,7 +313,7 @@ export const mockDatabase: DRERecord[] = [
     comissao: 0.0,
   },
   {
-    mes: "2024-02",
+    mes: "2026-02",
     vertical: "Atacado",
     valor_bruto: 415000.0,
     devolucao: 5100.0,
@@ -324,7 +324,7 @@ export const mockDatabase: DRERecord[] = [
     comissao: 12450.0,
   },
   {
-    mes: "2024-02",
+    mes: "2026-02",
     vertical: "Marketplace",
     valor_bruto: 112000.0,
     devolucao: 2550.0,
@@ -335,7 +335,7 @@ export const mockDatabase: DRERecord[] = [
     comissao: 22400.0,
   },
   {
-    mes: "2024-03",
+    mes: "2026-03",
     vertical: "E-commerce",
     valor_bruto: 167000.0,
     devolucao: 4050.0,
@@ -346,7 +346,7 @@ export const mockDatabase: DRERecord[] = [
     comissao: 8350.0,
   },
   {
-    mes: "2024-03",
+    mes: "2026-03",
     vertical: "Varejo",
     valor_bruto: 312000.0,
     devolucao: 2520.0,
@@ -357,7 +357,7 @@ export const mockDatabase: DRERecord[] = [
     comissao: 0.0,
   },
   {
-    mes: "2024-03",
+    mes: "2026-03",
     vertical: "Atacado",
     valor_bruto: 482000.0,
     devolucao: 1520.0,
@@ -368,7 +368,7 @@ export const mockDatabase: DRERecord[] = [
     comissao: 14460.0,
   },
   {
-    mes: "2024-03",
+    mes: "2026-03",
     vertical: "Marketplace",
     valor_bruto: 127000.0,
     devolucao: 3050.0,
@@ -379,7 +379,7 @@ export const mockDatabase: DRERecord[] = [
     comissao: 25400.0,
   },
   {
-    mes: "2024-04",
+    mes: "2026-04",
     vertical: "E-commerce",
     valor_bruto: 160000.0,
     devolucao: 3850.0,
@@ -390,7 +390,7 @@ export const mockDatabase: DRERecord[] = [
     comissao: 8000.0,
   },
   {
-    mes: "2024-04",
+    mes: "2026-04",
     vertical: "Varejo",
     valor_bruto: 297000.0,
     devolucao: 2120.0,
@@ -401,7 +401,7 @@ export const mockDatabase: DRERecord[] = [
     comissao: 0.0,
   },
   {
-    mes: "2024-04",
+    mes: "2026-04",
     vertical: "Atacado",
     valor_bruto: 432000.0,
     devolucao: 1000.0,
@@ -412,7 +412,7 @@ export const mockDatabase: DRERecord[] = [
     comissao: 12960.0,
   },
   {
-    mes: "2024-04",
+    mes: "2026-04",
     vertical: "Marketplace",
     valor_bruto: 120000.0,
     devolucao: 2850.0,
@@ -423,7 +423,7 @@ export const mockDatabase: DRERecord[] = [
     comissao: 24000.0,
   },
   {
-    mes: "2024-05",
+    mes: "2026-05",
     vertical: "E-commerce",
     valor_bruto: 172000.0,
     devolucao: 5250.0,
@@ -434,7 +434,7 @@ export const mockDatabase: DRERecord[] = [
     comissao: 8600.0,
   },
   {
-    mes: "2024-05",
+    mes: "2026-05",
     vertical: "Varejo",
     valor_bruto: 322000.0,
     devolucao: 3020.0,
@@ -445,7 +445,7 @@ export const mockDatabase: DRERecord[] = [
     comissao: 0.0,
   },
   {
-    mes: "2024-05",
+    mes: "2026-05",
     vertical: "Atacado",
     valor_bruto: 512000.0,
     devolucao: 1020.0,
@@ -456,7 +456,7 @@ export const mockDatabase: DRERecord[] = [
     comissao: 15360.0,
   },
   {
-    mes: "2024-05",
+    mes: "2026-05",
     vertical: "Marketplace",
     valor_bruto: 142000.0,
     devolucao: 3520.0,
