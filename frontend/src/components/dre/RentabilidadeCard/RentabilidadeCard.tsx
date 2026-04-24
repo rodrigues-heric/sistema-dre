@@ -46,7 +46,7 @@ export function RentabilidadeCard() {
         />
       </section>
 
-      {error && <p className="error-message">{error}</p>}
+      {error && <p>{error}</p>}
 
       <section className="dre-metrics-grid">
         {loading
