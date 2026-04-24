@@ -1,5 +1,6 @@
 import { useState, useCallback } from "react";
 import { dreService } from "../services/dreService";
+import { dreMapper } from "../mappers/dreMapper";
 
 export type ColorScale = "RED" | "YELLOW" | "GREEN";
 
@@ -15,15 +16,9 @@ export function useDreRentabilidade() {
   const [metrics, setMetrics] = useState<MetricData[] | null>(null);
   const [error, setError] = useState<string | null>(null);
 
-  const getColor = (value: number): ColorScale => {
-    if (value >= 20) return "GREEN";
-    if (value >= 10) return "YELLOW";
-    return "RED";
-  };
-
   const calculate = useCallback(async (date: Date | null, vertical: string) => {
     if (!date || !vertical) {
-      setError("Selecione a data e a vertical antes de calcular.");
+      setError("Selecione os filtros corretamente.");
       return;
     }
 
@@ -33,42 +28,10 @@ export function useDreRentabilidade() {
     try {
       const monthStr = `${date.getFullYear()}-${(date.getMonth() + 1).toString().padStart(2, "0")}`;
       const response = await dreService.getRentabilidade(monthStr, vertical);
-
-      const { metricas } = response.data;
-      const statusColor = getColor(metricas.margem_percentual);
-
-      const formattedMetrics: MetricData[] = [
-        {
-          title: "Receita líquida",
-          value: metricas.receita_liquida,
-          type: "R$",
-          color: statusColor,
-        },
-        {
-          title: "Custos totais",
-          value: metricas.custos_totais,
-          type: "R$",
-          color: statusColor,
-        },
-        {
-          title: "Lucro bruto",
-          value: metricas.lucro_bruto,
-          type: "R$",
-          color: statusColor,
-        },
-        {
-          title: "Margem",
-          value: metricas.margem_percentual,
-          type: "%",
-          color: statusColor,
-        },
-      ];
-
-      setMetrics(formattedMetrics);
+      const formatted = dreMapper.toDisplay(response.data.metricas);
+      setMetrics(formatted);
     } catch (err: any) {
-      const msg = err.response?.data?.message || "Erro ao buscar dados do DRE";
-      setError(msg);
-      setMetrics(null);
+      setError(err.response?.data?.message || "Erro de conexão");
     } finally {
       setLoading(false);
     }
