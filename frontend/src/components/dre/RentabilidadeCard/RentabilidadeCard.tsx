@@ -2,7 +2,7 @@ import { useState } from "react";
 
 import "./RentabilidadeCard.css";
 
-import { api } from "../../../services/api";
+import { dreService, type DreMetrics } from "../../../services/dreService";
 
 import { Button } from "../../ui/button/Button";
 import { VerticalSelector } from "../../ui/verticalSelector/VerticalSelector";
@@ -11,24 +11,6 @@ import { Header } from "../../ui/header/Header";
 import { Footer } from "../../ui/footer/Footer";
 import { Metric } from "../../ui/metric/Metric";
 import { Skeleton } from "../../ui/skeleton/Skeleton";
-
-interface DreData {
-  success: boolean;
-  data: {
-    mes: string;
-    vertical: string;
-    metricas: DreMetrics;
-    quantidade_registros: number;
-  };
-  message: string;
-}
-
-interface DreMetrics {
-  receita_liquida: number;
-  custos_totais: number;
-  lucro_bruto: number;
-  margem_percentual: number;
-}
 
 interface DisplayMetric {
   receita_liquida: MetricData;
@@ -82,13 +64,6 @@ export function RentabilidadeCard() {
     { key: "Marketplace", value: "Marketplace" },
   ];
 
-  const formatToBackend = (date: Date | null) => {
-    if (!date) return "";
-    const year = date.getFullYear();
-    const month = (date.getMonth() + 1).toString().padStart(2, "0");
-    return `${year}-${month}`;
-  };
-
   const handleCalculate = async () => {
     if (!selectedDate || !selectedVertical) {
       alert("Por favor, selecione o mês de referência e uma vertical");
@@ -98,45 +73,19 @@ export function RentabilidadeCard() {
     setLoading(true);
 
     try {
-      const month = formatToBackend(selectedDate);
+      const month = formatDateToBackend(selectedDate);
+      const response = await dreService.getRentabilidade(
+        month,
+        selectedVertical,
+      );
 
-      const response = await api.get("/dre/dre-rentabilidade", {
-        params: {
-          month: month,
-          vertical: selectedVertical,
-        },
-      });
+      const color = getColor(response.data.metricas.margem_percentual);
+      const metricsToDisplay: DisplayMetric = getDisplayMetrics(
+        response.data.metricas,
+        color,
+      );
 
-      const metricsData = response.data as DreData;
-      const color = getColor(metricsData.data.metricas.margem_percentual);
-
-      const displayData: DisplayMetric = {
-        receita_liquida: {
-          title: "Receita líquida",
-          value: metricsData.data.metricas.receita_liquida,
-          type: "R$",
-          color: color,
-        },
-        custos_totais: {
-          title: "Custos totais",
-          value: metricsData.data.metricas.custos_totais,
-          type: "R$",
-          color: color,
-        },
-        lucro_bruto: {
-          title: "Lucro bruto",
-          value: metricsData.data.metricas.lucro_bruto,
-          type: "R$",
-          color: color,
-        },
-        margem_percentual: {
-          title: "Margem",
-          value: metricsData.data.metricas.margem_percentual,
-          type: "%",
-          color: color,
-        },
-      };
-      setMetrics(displayData);
+      setMetrics(metricsToDisplay);
     } catch (error: any) {
       console.error("Error while fetching data:", error);
       alert(error.response?.data?.message || "Erro ao conectar com o servidor");
@@ -189,8 +138,47 @@ export function RentabilidadeCard() {
   );
 }
 
+function formatDateToBackend(date: Date | null) {
+  if (!date) return "";
+  const year = date.getFullYear();
+  const month = (date.getMonth() + 1).toString().padStart(2, "0");
+  return `${year}-${month}`;
+}
+
 function getColor(value: number): "RED" | "YELLOW" | "GREEN" {
   if (value >= 20) return "GREEN";
   if (value >= 10) return "YELLOW";
   return "RED";
+}
+
+function getDisplayMetrics(
+  metrics: DreMetrics,
+  color: "RED" | "YELLOW" | "GREEN",
+): DisplayMetric {
+  return {
+    receita_liquida: {
+      title: "Receita líquida",
+      value: metrics.receita_liquida,
+      type: "R$",
+      color: color,
+    },
+    custos_totais: {
+      title: "Custos totais",
+      value: metrics.custos_totais,
+      type: "R$",
+      color: color,
+    },
+    lucro_bruto: {
+      title: "Lucro bruto",
+      value: metrics.lucro_bruto,
+      type: "R$",
+      color: color,
+    },
+    margem_percentual: {
+      title: "Margem",
+      value: metrics.margem_percentual,
+      type: "%",
+      color: color,
+    },
+  };
 }
