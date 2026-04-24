@@ -108,34 +108,32 @@ export function RentabilidadeCard() {
       });
 
       const metricsData = response.data as DreData;
-      const marginColor = getMarginColor(
-        metricsData.data.metricas.margem_percentual,
-      );
+      const color = getColor(metricsData.data.metricas.margem_percentual);
 
       const displayData: DisplayMetric = {
         receita_liquida: {
           title: "Receita líquida",
           value: metricsData.data.metricas.receita_liquida,
           type: "R$",
-          color: "GREEN",
+          color: color,
         },
         custos_totais: {
           title: "Custos totais",
           value: metricsData.data.metricas.custos_totais,
           type: "R$",
-          color: "GREEN",
+          color: color,
         },
         lucro_bruto: {
           title: "Lucro bruto",
           value: metricsData.data.metricas.lucro_bruto,
           type: "R$",
-          color: "YELLOW",
+          color: color,
         },
         margem_percentual: {
           title: "Margem",
           value: metricsData.data.metricas.margem_percentual,
           type: "%",
-          color: marginColor,
+          color: color,
         },
       };
       setMetrics(displayData);
@@ -191,7 +189,7 @@ export function RentabilidadeCard() {
   );
 }
 
-function getMarginColor(value: number): "RED" | "YELLOW" | "GREEN" {
+function getColor(value: number): "RED" | "YELLOW" | "GREEN" {
   if (value >= 20) return "GREEN";
   if (value >= 10) return "YELLOW";
   return "RED";
