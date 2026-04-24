@@ -4,6 +4,10 @@ Projeto feito com backend em Node (Express) e frontend em React (Vite)
 
 Projeto no GitHub: [Sistema DRE](https://github.com/rodrigues-heric/sistema-dre)
 
+Kanban do projeto no GitHub: [Board](https://github.com/users/rodrigues-heric/projects/2)
+
+> Acabei não fazendo tudo que gostaria no board por falta de tempo. Em um cenário real eu prezo pelo organização e clareza com o time.
+
 ## Instalação e execução
 
 ### Backend
