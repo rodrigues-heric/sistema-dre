@@ -33,7 +33,7 @@ Projeto no GitHub: [Sistema DRE](https://github.com/rodrigues-heric/sistema-dre)
 3. Execute `npm run test`
 4. Verifique os logs
 
-## Estrututra do projeto
+## Estrututra do projeto e decisões técnicas
 
 ### Backend
 
@@ -66,10 +66,6 @@ src
     ├── appError.test.ts
     └── appError.ts
 ```
-
-## Decisões técnicas
-
-### Backend
 
 Backend construído em Node com Express conforme solicitado pelo desafio técnico.
 
