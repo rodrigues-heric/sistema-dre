@@ -75,7 +75,7 @@ const _calculateMetrics = (records: DRERecord[]): DreMetrics => {
 
   const grossProfit: number = _calculateGrossProfit(netIncome, totalCosts);
   const marginPercent: number =
-    grossProfit != 0 ? _calculateMarginPercent(netIncome, grossProfit) : 0;
+    netIncome != 0 ? _calculateMarginPercent(netIncome, grossProfit) : 0;
 
   return {
     receita_liquida: netIncome,
@@ -101,5 +101,5 @@ const _calculateMarginPercent = (
   netIncome: number,
   grossProfit: number,
 ): number => {
-  return (netIncome / grossProfit) * 100;
+  return (grossProfit / netIncome) * 100;
 };
