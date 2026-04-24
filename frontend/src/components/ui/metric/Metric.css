@@ -8,6 +8,31 @@
   gap: 0.5rem;
 }
 
+.metric-card.success {
+  border-left: 4px solid #10b981;
+  background: #f0fdf4;
+}
+
+.metric-card.danger {
+  border-left: 4px solid #ef4444;
+  background: #fef2f2;
+}
+
+.metric-card.warning {
+  border-left: 4px solid #f59e0b;
+  background: #fffbeb;
+}
+
+.metric-card.success .metric-value {
+  color: #065f46;
+}
+.metric-card.danger .metric-value {
+  color: #991b1b;
+}
+.metric-card.warning .metric-value {
+  color: #92400e;
+}
+
 .metric-label {
   font-size: 0.85rem;
   color: var(--text-muted);

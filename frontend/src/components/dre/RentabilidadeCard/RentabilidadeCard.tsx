@@ -41,6 +41,7 @@ interface MetricData {
   title: string;
   value: number;
   type: "R$" | "%";
+  color: "RED" | "YELLOW" | "GREEN";
 }
 
 export function RentabilidadeCard() {
@@ -52,21 +53,25 @@ export function RentabilidadeCard() {
       title: "Receita líquida",
       value: 0,
       type: "R$",
+      color: "GREEN",
     },
     custos_totais: {
       title: "Custos totais",
       value: 0,
       type: "R$",
+      color: "GREEN",
     },
     lucro_bruto: {
       title: "Lucro bruto",
       value: 0,
       type: "R$",
+      color: "GREEN",
     },
     margem_percentual: {
       title: "Margem",
       value: 0,
       type: "%",
+      color: "GREEN",
     },
   });
 
@@ -103,26 +108,34 @@ export function RentabilidadeCard() {
       });
 
       const metricsData = response.data as DreData;
+      const marginColor = getMarginColor(
+        metricsData.data.metricas.margem_percentual,
+      );
+
       const displayData: DisplayMetric = {
         receita_liquida: {
           title: "Receita líquida",
           value: metricsData.data.metricas.receita_liquida,
           type: "R$",
+          color: "GREEN",
         },
         custos_totais: {
           title: "Custos totais",
           value: metricsData.data.metricas.custos_totais,
           type: "R$",
+          color: "GREEN",
         },
         lucro_bruto: {
           title: "Lucro bruto",
           value: metricsData.data.metricas.lucro_bruto,
           type: "R$",
+          color: "YELLOW",
         },
         margem_percentual: {
           title: "Margem",
           value: metricsData.data.metricas.margem_percentual,
           type: "%",
+          color: marginColor,
         },
       };
       setMetrics(displayData);
@@ -167,6 +180,7 @@ export function RentabilidadeCard() {
               title={metric.title}
               value={metric.value}
               type={metric.type}
+              color={metric.color}
             />
           ),
         )}
@@ -175,4 +189,10 @@ export function RentabilidadeCard() {
       <Footer />
     </div>
   );
+}
+
+function getMarginColor(value: number): "RED" | "YELLOW" | "GREEN" {
+  if (value >= 20) return "GREEN";
+  if (value >= 10) return "YELLOW";
+  return "RED";
 }
