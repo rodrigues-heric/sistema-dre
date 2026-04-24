@@ -1,0 +1,43 @@
+.dre-input {
+  padding: 0.6rem;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.dre-input:focus {
+  border-color: var(--accent);
+}
+
+.filter-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  flex: 1;
+}
+
+.filter-group label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+@media (max-width: 768px) {
+  .dre-input {
+    width: 100%;
+    box-sizing: border-box;
+    font-size: 16px;
+    padding: 0.8rem;
+  }
+
+  .filter-group {
+    flex: none;
+  }
+}
+
+.react-datepicker-wrapper {
+  width: 100%;
+}
