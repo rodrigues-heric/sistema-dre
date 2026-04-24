@@ -26,7 +26,7 @@ function PercentageLabel({ value }: { value: number }) {
   return <span className="metric-value">{formatPercent(value)}</span>;
 }
 
-function formatCurrency(value: number) {
+function formatCurrency(value: number): string {
   return new Intl.NumberFormat("pt-BR", {
     style: "currency",
     currency: "BRL",
@@ -34,9 +34,6 @@ function formatCurrency(value: number) {
   }).format(value);
 }
 
-function formatPercent(value: number) {
-  return new Intl.NumberFormat("pt-BR", {
-    style: "percent",
-    minimumFractionDigits: 2,
-  }).format(value);
+function formatPercent(value: number): string {
+  return `${Number(value.toFixed(2))}%`;
 }

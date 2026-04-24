@@ -5,11 +5,17 @@ interface VerticalOption {
   value: string;
 }
 
-interface VerticalOptionsArray {
+interface VerticalSelectorProps {
   options: VerticalOption[];
+  value: string;
+  onChange: (value: string) => void;
 }
 
-export function VerticalSelector({ options }: VerticalOptionsArray) {
+export function VerticalSelector({
+  options,
+  value,
+  onChange,
+}: VerticalSelectorProps) {
   const optionsSorted: VerticalOption[] = [...options].sort((a, b) => {
     return a.value.localeCompare(b.value);
   });
@@ -17,7 +23,11 @@ export function VerticalSelector({ options }: VerticalOptionsArray) {
   return (
     <div className="filter-group">
       <label>Vertical</label>
-      <select className="dre-input">
+      <select
+        className="dre-input"
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+      >
         <option value="">- Selecione -</option>
 
         {optionsSorted.map((opt: VerticalOption) => (
