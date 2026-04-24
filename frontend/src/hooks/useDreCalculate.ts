@@ -1,4 +1,5 @@
 import { useState, useCallback } from "react";
+import { toast } from "sonner";
 import { dreService } from "../services/dreService";
 import { dreMapper } from "../mappers/dreMapper";
 
@@ -18,7 +19,9 @@ export function useDreRentabilidade() {
 
   const calculate = useCallback(async (date: Date | null, vertical: string) => {
     if (!date || !vertical) {
-      setError("Selecione os filtros corretamente.");
+      toast.warning("Atenção", {
+        description: "Selecione o mês e a vertical antes de calcular.",
+      });
       return;
     }
 
@@ -29,9 +32,18 @@ export function useDreRentabilidade() {
       const monthStr = `${date.getFullYear()}-${(date.getMonth() + 1).toString().padStart(2, "0")}`;
       const response = await dreService.getRentabilidade(monthStr, vertical);
       const formatted = dreMapper.toDisplay(response.data.metricas);
+
       setMetrics(formatted);
+      toast.success("Sucesso!", {
+        description: "Dados de DRE carregados com sucesso.",
+      });
     } catch (err: any) {
       setError(err.response?.data?.message || "Erro de conexão");
+      const msg =
+        err.response?.data?.message || "Erro de conexão com o servidor.";
+      toast.error("Erro na consulta", {
+        description: msg,
+      });
     } finally {
       setLoading(false);
     }
