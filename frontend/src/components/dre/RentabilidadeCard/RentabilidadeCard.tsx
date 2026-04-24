@@ -11,6 +11,7 @@ import { Header } from "../../ui/header/Header";
 import { Footer } from "../../ui/footer/Footer";
 import { Metric } from "../../ui/metric/Metric";
 import { Skeleton } from "../../ui/skeleton/Skeleton";
+import { EmptyState } from "../../ui/emptyState/EmptyState";
 
 export function RentabilidadeCard() {
   const [selectedVertical, setSelectedVertical] = useState("");
@@ -49,17 +50,21 @@ export function RentabilidadeCard() {
       {error && <p>{error}</p>}
 
       <section className="dre-metrics-grid">
-        {loading
-          ? Array.from({ length: 4 }).map((_, i) => <Skeleton key={i} />)
-          : metrics?.map((metric) => (
-              <Metric
-                key={metric.title}
-                title={metric.title}
-                value={metric.value}
-                type={metric.type}
-                color={metric.color}
-              />
-            ))}
+        {loading ? (
+          Array.from({ length: 4 }).map((_, i) => <Skeleton key={i} />)
+        ) : metrics ? (
+          metrics.map((metric) => (
+            <Metric
+              key={metric.title}
+              title={metric.title}
+              value={metric.value}
+              type={metric.type}
+              color={metric.color}
+            />
+          ))
+        ) : (
+          <EmptyState />
+        )}
       </section>
 
       <Footer />
